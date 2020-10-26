@@ -2,6 +2,8 @@
     <string name="app_name">App#02</string>
     <string name="app_name2">Jogo do Bicho</string>
     <string name="random_animal">Sortear Bicho</string>
-    <string name="tv_animal_name"> </string>
-    <string name="tv_animal_number"> </string>
+    <string name="tv_animal_name"></string>
+    <string name="tv_animal_number"></string>
+    <string name="show_animal">Ver Bicho</string>
+    <string name="back_button">Voltar</string>
 </resources>

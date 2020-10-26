@@ -1,5 +1,6 @@
 package br.com.touchsoul.jogodobicho;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,31 +8,56 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class MainActivity extends AppCompatActivity {
+    private Random r;
+    private int n;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Button button = findViewById(R.id.btn_random_animal);
+        
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                int n = sortear();
-
-                int numero = n+1;
+                n = sortear();
 
                 TextView tvanumber = findViewById(R.id.tv_animal_number);
-
-                tvanumber.setText(""+(numero));
-
                 TextView tvaname = findViewById(R.id.tv_animal_name);
 
-                tvaname.setText(""+animalsList.get(n));
+                if (n > 999)
+                    tvanumber.setText("" + n);
+                else if (n < 1000 && n > 99)
+                    tvanumber.setText("0" + n);
+                else if (n < 100 && n > 9)
+                    tvanumber.setText("00" + n);
+                else
+                    tvanumber.setText("000" + n);
+
+
+                final int posicaoVetor = descobrirNumeroDoBicho(n);
+
+                tvaname.setText(""+animalsList.get(posicaoVetor));
+
+
+                Button show_animal = findViewById(R.id.btn_show_animal);
+                show_animal.setVisibility(View.VISIBLE);
+
+                show_animal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getApplicationContext(), ShowAnimalActivity.class);
+
+                        i.putExtra("number", posicaoVetor);
+
+                        startActivity(i);
+                    }
+                });
             }
         });
     }
@@ -70,9 +96,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int sortear(){
-        int n = ThreadLocalRandom.current().nextInt(0, 25);
+        r = new Random();
+
+        int n = r.nextInt(10000);
 
         return n;
     }
 
+    public int descobrirNumeroDoBicho(int n){
+
+        //há erro em 0051, aparece gato, mas deveria aparecer galo
+        //há erro em 0090, aparece veado, mas deveria aparecer urso
+
+        while (n % 4 != 0)
+            n++;
+
+        if (n == 0 || n > 9996 || (n > 99 && n%100 == 0))
+            return 24; //numero da vaca é 24 na posição do arraylist
+
+        if (n % 4 == 0 && n > 100)
+            return ( n % 100 ) / 4 - 1; // o número do bicho no arraylist é n entre 1 e 25 subtraído de 1;
+
+        if (n % 4 == 0 && n < 9)
+            return n / 4 - 1;
+
+        return n/4 - 1;
+    }
 }

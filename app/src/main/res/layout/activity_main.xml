@@ -17,11 +17,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cntnr_app_name" />
 
+    <Button
+        android:id="@+id/btn_show_animal"
+        android:layout_width="0dp"
+        android:layout_height="62dp"
+        android:background="@color/colorBtnSortearText"
+        android:text="@string/show_animal"
+        android:textColor="@color/colorBtnSortear"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_random_animal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <android.support.v7.widget.GridLayout
         android:id="@+id/cntnr_app_name"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:background="#BA02D2"
+        android:layout_height="126dp"
+        android:background="@color/colorPurple"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,6 +66,7 @@
         android:text="@string/random_animal"
         android:textColor="@color/colorBtnSortearText"
         android:textSize="30sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -60,27 +75,27 @@
         android:id="@+id/tv_animal_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:text="@string/tv_animal_name"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPurple"
         android:textSize="48sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_animal_number"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cntnr_app_name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_animal_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="259dp"
+        android:layout_height="117dp"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/tv_animal_number"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPurple"
         android:textSize="108sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_random_animal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_animal_name" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.305" />
 
 </android.support.constraint.ConstraintLayout>

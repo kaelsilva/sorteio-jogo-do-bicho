@@ -105,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
     public int descobrirNumeroDoBicho(int n){
 
-        //há erro em 0051, aparece gato, mas deveria aparecer galo
-        //há erro em 0090, aparece veado, mas deveria aparecer urso
-
         while (n % 4 != 0)
             n++;
 
